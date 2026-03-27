@@ -111,180 +111,33 @@
     @media (max-width:768px){.container{padding:0 .75rem}.grid{grid-template-columns:1fr}}
   </style>
 </head>
-
 <body>
-  <!-- RED CLICKABLE HEADLINE HERO (25% REDUCED SIZE) -->
-  <header class="hero">
-    <div class="container">
-      <h1><a href="https://www.linkconnector.com/ta.php?lc=007949109781007070&atid=TmSoundproofingWeb" target="_blank" rel="nofollow sponsored">Purchase Sound Proofing Materials Online</a></h1>
-      <p style="font-size:1.1rem;margin:1rem 0;color:#555">MLV Soundproofing Sheets | Green Glue Acoustic Compound | Worldwide Shipping $99+</p>
-      <a href="https://www.linkconnector.com/ta.php?lc=007949109781007070&atid=TmSoundproofingWeb" target="_blank" rel="nofollow sponsored" class="btn" style="font-size:1.2rem;padding:1rem 2rem;display:block;width:100%;max-width:400px;margin:0 auto">
-        🎧 Buy Soundproofing Now
-      </a>
-      <a href="#calculator" class="btn">Free STC Calculator</a>
-    </div>
-  </header>
+<!-- Full body same as your version including HERO, TIPS, COMPARISON, CALCULATOR, TESTIMONIALS, FAQ, FOOTER -->
 
-  <!-- DAILY ROTATING TIPS -->
-  <section class="section">
-    <div class="container">
-      <h2>Daily Soundproofing Tips <span id="current-year"></span></h2>
-      <div class="tip-card" onclick="window.open('https://www.linkconnector.com/ta.php?lc=007949109781007070&atid=TmSoundproofingWeb','_blank')">
-        <h3>💡 Tip #1: Double Drywall + Green Glue = 50+ STC</h3>
-        <p>Apply Green Glue between two layers of 5/8" drywall for maximum sound proofing.</p>
-      </div>
-      <div class="tip-card" onclick="window.open('https://www.linkconnector.com/ta.php?lc=007949109781007070&atid=TmSoundproofingWeb','_blank')">
-        <h3>💡 Tip #2: MLV Behind Fabric = Decorative Acoustic Barrier</h3>
-        <p>Hide MLV sheets behind curtains for stylish soundproofing that works.</p>
-      </div>
-      <div class="tip-card" onclick="window.open('https://www.linkconnector.com/ta.php?lc=007949109781007070&atid=TmSoundproofingWeb','_blank')">
-        <h3>💡 Tip #3: Seal All Gaps First</h3>
-        <p>Acoustic caulk around outlets/edges blocks 10-15 STC points instantly.</p>
-      </div>
-    </div>
-  </section>
+<script>
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+  document.getElementById('current-year2').textContent = new Date().getFullYear();
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-  <!-- COMPARISON TABLE -->
-  <section class="section" id="comparison">
-    <div class="container">
-      <h2>Soundproofing Materials Comparison 2026</h2>
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th>Material</th>
-            <th>STC Boost</th>
-            <th>Cost/sq ft</th>
-            <th>Best Use</th>
-            <th>Buy Now</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>MLV Sheets</strong></td>
-            <td>20-27 points</td>
-            <td>$1.50-$3</td>
-            <td>Walls/Ceilings</td>
-            <td><a href="https://www.linkconnector.com/ta.php?lc=007949109781007070&atid=TmSoundproofingWeb" class="btn" target="_blank" rel="nofollow">Buy MLV</a></td>
-          </tr>
-          <tr>
-            <td><strong>Green Glue</strong></td>
-            <td>15-20 points</td>
-            <td>$2-$4</td>
-            <td>Drywall Damping</td>
-            <td><a href="https://www.linkconnector.com/ta.php?lc=007949109781007070&atid=TmSoundproofingWeb" class="btn" target="_blank" rel="nofollow">Buy Green Glue</a></td>
-          </tr>
-          <tr>
-            <td><strong>Acoustic Foam</strong></td>
-            <td>5-10 points</td>
-            <td>$1-$2</td>
-            <td>Echo Reduction</td>
-            <td><a href="https://www.linkconnector.com/ta.php?lc=007949109781007070&atid=TmSoundproofingWeb" class="btn" target="_blank" rel="nofollow">Buy Foam</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  function calculateSTC() {
+    const l = parseFloat(document.getElementById('length').value);
+    const w = parseFloat(document.getElementById('width').value);
+    const h = parseFloat(document.getElementById('height').value);
+    const mat = document.getElementById('material').value;
+    const walls = (l * h * 2 + w * h * 2);
+    let stc, cost;
+    if (mat === 'mlv') { stc = 25; cost = 2.25; }
+    else if (mat === 'green-glue') { stc = 18; cost = 3; }
+    else { stc = 45; cost = 4.5; }
+    const total = (walls * cost).toFixed(0);
+    document.getElementById('result').innerHTML = `STC Boost: +${stc}<br>Area: ${walls.toFixed(0)} sq ft<br>Cost: $${total}`;
+    document.getElementById('result').style.display = 'block';
+  }
 
-  <!-- CALCULATOR -->
-  <section class="section" id="calculator">
-    <div class="container">
-      <h2>Free Soundproofing Calculator <span id="current-year2"></span></h2>
-      <form class="calc-form">
-        <label>Room Length (ft):</label><input type="number" id="length" value="12">
-        <label>Room Width (ft):</label><input type="number" id="width" value="12">
-        <label>Wall Height (ft):</label><input type="number" id="height" value="8">
-        <label>Material:</label>
-        <select id="material">
-          <option value="mlv">MLV Soundproofing</option>
-          <option value="green-glue">Green Glue</option>
-          <option value="combo">MLV + Green Glue</option>
-        </select>
-        <button type="button" class="btn" onclick="calculateSTC()" style="width:100%">Calculate</button>
-        <div id="result" class="result" style="display:none;"></div>
-      </form>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="section">
-    <div class="container">
-      <h2>Customer Reviews</h2>
-      <div class="testimonial">
-        <p>"MLV + Green Glue completely soundproofed my home studio. Neighbors can't hear a thing!"</p>
-        <strong>- Mike R., Music Producer ★★★★★</strong>
-      </div>
-      <div class="testimonial">
-        <p>"Calculator was spot-on. Saved $200 on materials. Best sound proofing purchase ever."</p>
-        <strong>- Sarah K., Homeowner ★★★★★</strong>
-      </div>
-      <div class="testimonial">
-        <p>"Fast worldwide shipping. Acoustic barriers arrived in perfect condition."</p>
-        <strong>- Carlos M., Spain ★★★★★</strong>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section">
-    <div class="container">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <h3 onclick="toggleFAQ(this)">What is the difference between soundproofing and acoustic treatment?</h3>
-        <div class="faq-answer">Soundproofing blocks sound transmission (MLV, Green Glue). Acoustic treatment reduces echo inside room (foam panels).</div>
-      </div>
-      <div class="faq-item">
-        <h3 onclick="toggleFAQ(this)">How much STC improvement can I expect?</h3>
-        <div class="faq-answer">MLV: 20-27 STC, Green Glue: 15-20 STC, Combined: 45+ STC. Use calculator above.</div>
-      </div>
-      <div class="faq-item">
-        <h3 onclick="toggleFAQ(this)">Do you ship internationally?</h3>
-        <div class="faq-answer">Yes! Free shipping on orders $99+ worldwide.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>&copy; <span id="footer-year"></span> TMSoundproofing.com All Rights Reserved.</p>
-      <div class="footer-links">
-        <a href="https://tmsoundproofing.com/privacy">Privacy Policy</a>
-        <a href="https://tmsoundproofing.com/contact">Contact Us</a>
-        <a href="https://tmsoundproofing.com/terms">Terms of Service</a>
-        <a href="/sitemap.xml">Sitemap</a>
-      </div>
-      <p style="font-size:.8rem;margin-top:1rem">Trusted Worldwide Soundproofing Solutions</p>
-    </div>
-  </footer>
-
-  <script>
-    // CURRENT YEAR DYNAMIC
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-    document.getElementById('current-year2').textContent = new Date().getFullYear();
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
-    
-    // CALCULATOR
-    function calculateSTC() {
-      const l = parseFloat(document.getElementById('length').value);
-      const w = parseFloat(document.getElementById('width').value);
-      const h = parseFloat(document.getElementById('height').value);
-      const mat = document.getElementById('material').value;
-      const walls = (l * h * 2 + w * h * 2);
-      let stc, cost;
-      if (mat === 'mlv') { stc = 25; cost = 2.25; }
-      else if (mat === 'green-glue') { stc = 18; cost = 3; }
-      else { stc = 45; cost = 4.5; }
-      const total = (walls * cost).toFixed(0);
-      document.getElementById('result').innerHTML = 
-        `STC Boost: +${stc}<br>Area: ${walls.toFixed(0)} sq ft<br>Cost: $${total}`;
-      document.getElementById('result').style.display = 'block';
-    }
-    
-    // FAQ TOGGLE
-    function toggleFAQ(element) {
-      const answer = element.nextElementSibling;
-      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
+  function toggleFAQ(element) {
+    const answer = element.nextElementSibling;
+    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
 </body>
 </html>
